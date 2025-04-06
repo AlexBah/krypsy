@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import PhoneInput from "../components/PhoneInput";
 import SendSmsButton from "../components/SendSmsButton";
 import SmsInput from "../components/SmsInput";
@@ -9,12 +9,15 @@ const Register = ({ navigation }) => {
     const [smsInputEnable, setSmsInputEnable] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [sms, setSms] = useState('');
+    const [smsCode, setSmsCode] = useState('A A A');
+    const maxSmsLength = 3;
 
     const handlePhoneChange = (number) => {
         setPhoneNumber(number);
     };
 
-    const handleSendSmsPress = (state) => {
+    const handleSendSmsPress = (state, value) => {
+        setSmsCode(value);
         setSmsInputEnable(state);
     };
 
@@ -23,8 +26,7 @@ const Register = ({ navigation }) => {
     };
 
     useEffect(() => {
-        const maxSmsLength = 5;
-        if (sms.length === maxSmsLength) {
+        if (sms.length === (maxSmsLength*2-1)) {
             // to do: проверка смс
             navigation.navigate('MainScreen')
         };
@@ -33,12 +35,16 @@ const Register = ({ navigation }) => {
     return(
         <View style={styles.background}>
 
+            <Text> {smsCode} </Text>
+            <Text> {phoneNumber} </Text>
+
             <PhoneInput 
                 onChange={handlePhoneChange} 
             />
 
             <SendSmsButton 
                 phoneNumber={phoneNumber}
+                maxSmsLength={maxSmsLength}                
                 onPress={handleSendSmsPress} 
             />
 

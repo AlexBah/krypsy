@@ -37,7 +37,7 @@ const PhoneInput = ({ onChange }) => {
         <View style={styles.inputBorder}>
             <Icon name="phone" size={23} style={styles.inputIcon} />
             <TextInput
-                style={styles.inputText}
+                style={[styles.inputText, styles.phoneInput]}
                 value={phoneNumber}
                 onChangeText={handleChange}
                 keyboardType="phone-pad"

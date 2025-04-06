@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
   },
   inputBorder: {
     flexDirection: "row",
+    justifyContent: 'center',
     alignItems: "center",
     borderWidth: 2,
-    margin: 10,
+    margin: 15,
     paddingHorizontal: 10,
     borderColor: COLORS.textColor,
     borderRadius: 23,
@@ -61,16 +62,25 @@ const styles = StyleSheet.create({
     opacity: COLORS.opacity,
   },
   inputText: {
+    height: 40,
+    textAlignVertical: 'center', 
+    textAlign: 'center',    
     paddingHorizontal: 10,
     fontSize: 20,
     fontFamily: "SemiBold",
     color: COLORS.textColor,
     opacity: COLORS.opacity,
   },
+  phoneInput: {
+    width: 240,
+  },
+  smsInput: {
+    width: 70,
+  },
   button: {
     alignItems: "center",
     justifyContent: "center",
-    margin: 10,
+    margin: 15,
     backgroundColor: COLORS.buttonColor,
     paddingVertical: 2,
     borderRadius: 23,

@@ -26,7 +26,7 @@ const SmsInput = ({ enable, onChange }) => {
         <View style={styles.inputBorder}>
             <TextInput
                 editable={enable} 
-                style={styles.inputText}
+                style={[styles.inputText, styles.smsInput]}
                 value={sms}
                 onChangeText={handleChange}
                 keyboardType="phone-pad"
