@@ -34,7 +34,7 @@ const SendSmsButton = ({ phoneNumber, maxSmsLength, onPress }) => {
 
         smsCode = GenerateRandomSms(maxSmsLength);
         try {
-            await SendSmsMtsExolve(smsCode, phoneNumber.replace(/\D/g, ''))
+            await SendSmsMtsExolve(smsCode.replace(/\D/g, ''), phoneNumber.replace(/\D/g, ''))
         } catch (error) {
             console.error(error);
         }

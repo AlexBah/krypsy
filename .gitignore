@@ -30,6 +30,7 @@ yarn-error.*
 *.pem
 
 # local env files
+src/cmd/config/
 .env*.local
 
 # typescript

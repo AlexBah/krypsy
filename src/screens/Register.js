@@ -27,16 +27,16 @@ const Register = ({ navigation }) => {
 
     useEffect(() => {
         if (sms.length === (maxSmsLength*2-1)) {
-            // to do: проверка смс
-            navigation.navigate('MainScreen')
+            if (sms === smsCode) {
+                navigation.navigate('NewLogin')
+            } else {
+            // to do: не верное смс
+            }
         };
     }, [sms]); 
 
     return(
         <View style={styles.background}>
-
-            <Text> {smsCode} </Text>
-            <Text> {phoneNumber} </Text>
 
             <PhoneInput 
                 onChange={handlePhoneChange} 
