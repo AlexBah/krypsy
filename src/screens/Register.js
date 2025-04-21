@@ -30,7 +30,7 @@ const Register = ({ navigation }) => {
             if (sms === smsCode) {
                 navigation.navigate('NewLogin')
             } else {
-            // to do: не верное смс
+            // to do: wrong SMS
             }
         };
     }, [sms]); 
