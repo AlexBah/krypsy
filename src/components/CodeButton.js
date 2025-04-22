@@ -5,7 +5,7 @@ import styles from '../styles/Styles';
 const CodeButton = ({ value, onPress }) => {
 
     const handlePress = (value) => {
-        onPress(value);
+        if (onPress) { onPress(value); }
     };
 
     return (

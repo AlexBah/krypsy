@@ -13,7 +13,7 @@ const values = [
 const ButtonGrid = ({ onChange }) => {
 
     const handleCodeChange = (number) => {
-        onChange(number);
+        if (onChange) { onChange(number); }
     };
 
     return (

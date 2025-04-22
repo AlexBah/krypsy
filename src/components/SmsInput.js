@@ -17,9 +17,7 @@ const SmsInput = ({ enable, onChange }) => {
     const handleChange = (text) => {
         const formattedSms = formatSms(text);
         setSms(formattedSms);
-        if (onChange) {
-            onChange(formattedSms);
-        }
+        if (onChange) { onChange(formattedSms); }
     };
       
     return (

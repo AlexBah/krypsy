@@ -28,9 +28,7 @@ const PhoneInput = ({ onChange }) => {
     const handleChange = (text) => {
         const formattedNumber = formatPhoneNumber(text);
         setPhoneNumber(formattedNumber);
-        if (onChange) {
-            onChange(formattedNumber);
-        }
+        if (onChange) { onChange(formattedNumber); }
     };
       
     return (
