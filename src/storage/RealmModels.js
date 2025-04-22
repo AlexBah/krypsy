@@ -8,6 +8,7 @@ class User extends Realm.Object {}
             name: 'string',
             email: 'string',
             phone: 'string',
+            code: 'string',
             jwt: 'string',
         },
         primaryKey: 'id',
@@ -31,7 +32,7 @@ class CryptoWallet extends Realm.Object {}
 const getRealm = async () => {
     const realm = await Realm.open({
         schema: [User, CryptoWallet],
-        schemaVersion: 1, 
+        schemaVersion: 2, 
     });
     return realm;
 };

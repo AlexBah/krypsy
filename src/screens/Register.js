@@ -3,6 +3,8 @@ import { View, Text } from "react-native";
 import PhoneInput from "../components/PhoneInput";
 import SendSmsButton from "../components/SendSmsButton";
 import SmsInput from "../components/SmsInput";
+import GenerateRandomSms from '../cmd/GenerateRandomSms';
+import SendSmsMtsExolve from "../cmd/SendSmsMtsExolve";
 import styles from '../styles/Styles';
 
 const Register = ({ navigation }) => {
@@ -16,9 +18,19 @@ const Register = ({ navigation }) => {
         setPhoneNumber(number);
     };
 
-    const handleSendSmsPress = (state, value) => {
-        setSmsCode(value);
+    const handleSendSmsPress = (state) => {
         setSmsInputEnable(state);
+    };
+
+    const handleSend = async () => {
+        let value
+        value = GenerateRandomSms(maxSmsLength);
+        setSmsCode(value);
+        try {
+            await SendSmsMtsExolve(value.replace(/\D/g, ''), phoneNumber.replace(/\D/g, ''))
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleSmsChange = (number) => {
@@ -44,8 +56,8 @@ const Register = ({ navigation }) => {
 
             <SendSmsButton 
                 phoneNumber={phoneNumber}
-                maxSmsLength={maxSmsLength}                
                 onPress={handleSendSmsPress} 
+                onSend={handleSend}
             />
 
             <SmsInput 

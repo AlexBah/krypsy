@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import styles from '../styles/Styles';
-import GenerateRandomSms from '../cmd/GenerateRandomSms';
-import SendSmsMtsExolve from "../cmd/SendSmsMtsExolve";
 
-
-const SendSmsButton = ({ phoneNumber, maxSmsLength, onPress }) => {
+const SendSmsButton = ({ phoneNumber, onPress, onSend }) => {
     const [buttonEnable, setButtonEnable] = useState(false);
     const [buttonTitle, setButtonTitle] = useState('wait phone');
     const [intervalId, setIntervalId] = useState(null);
-    let smsCode = 'A A A'
 
     useEffect(() => {
         const phoneRegex = /^\+\d{1}-\d{3}-\d{3}-\d{2}-\d{2}$/;
@@ -20,7 +16,8 @@ const SendSmsButton = ({ phoneNumber, maxSmsLength, onPress }) => {
         } else {
             setButtonEnable(false);
             setButtonTitle('invalid phone');
-            onPress(false, smsCode); // state smsInputEnable
+            // state smsInputEnable
+            if (onPress) { onPress(false); }
             if (intervalId) {
                 clearInterval(intervalId);
                 setIntervalId(null);
@@ -32,16 +29,12 @@ const SendSmsButton = ({ phoneNumber, maxSmsLength, onPress }) => {
         const timeout = 10;
         let countdown = timeout;
 
-        smsCode = GenerateRandomSms(maxSmsLength);
-        try {
-            await SendSmsMtsExolve(smsCode.replace(/\D/g, ''), phoneNumber.replace(/\D/g, ''))
-        } catch (error) {
-            console.error(error);
-        }
+        if (onSend) { onSend(); }
 
         setButtonEnable(false);
         setButtonTitle(`new sms (${countdown})`);
-        onPress(true, smsCode); // state smsInputEnable
+        // state smsInputEnable
+        if (onPress) { onPress(true); }
 
         const Id = setInterval(() => {
             countdown -= 1;
