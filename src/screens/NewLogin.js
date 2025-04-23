@@ -4,8 +4,9 @@ import styles from '../styles/Styles';
 import CodeIndicator from "../components/CodeIndicator";
 import ButtonGrid from "../components/ButtonGrid";
 
-const NewLogin = ({ navigation }) => {
+const NewLogin = ({ navigation, route }) => {
     const maxCodeLength = 4;
+    const { phoneNumber } = route.params || {};
     const [code, setCode] = useState('');
 
     const handleCodeChange = (number) => {

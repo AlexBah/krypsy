@@ -40,7 +40,7 @@ const Register = ({ navigation }) => {
     useEffect(() => {
         if (sms.length === (maxSmsLength*2-1)) {
             if (sms === smsCode) {
-                navigation.navigate('NewLogin')
+                navigation.navigate('NewLogin', { phoneNumber });
             } else {
             // to do: wrong SMS
             }
