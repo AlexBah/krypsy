@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import styles from '../styles/Styles';
 
 const SendSmsButton = ({ phoneNumber, onPress, onSend }) => {
     const [buttonEnable, setButtonEnable] = useState(false);
     const [buttonTitle, setButtonTitle] = useState('wait phone');
-    const [intervalId, setIntervalId] = useState(null);
+    const intervalRef = useRef(null); 
 
     useEffect(() => {
         const phoneRegex = /^\+\d{1}-\d{3}-\d{3}-\d{2}-\d{2}$/;
@@ -18,14 +18,24 @@ const SendSmsButton = ({ phoneNumber, onPress, onSend }) => {
             setButtonTitle('invalid phone');
             // state smsInputEnable
             if (onPress) { onPress(false); }
-            if (intervalId) {
-                clearInterval(intervalId);
-                setIntervalId(null);
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
             }
         }
-      }, [phoneNumber]); 
+    }, [phoneNumber]); 
     
-    const handlePress = async () => {
+    useEffect(() => {
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        };
+    }, []);
+
+    const handlePress = () => {
+        console.log('handlePress');
         const timeout = 10;
         let countdown = timeout;
 
@@ -33,20 +43,19 @@ const SendSmsButton = ({ phoneNumber, onPress, onSend }) => {
 
         setButtonEnable(false);
         setButtonTitle(`new sms (${countdown})`);
-        // state smsInputEnable
         if (onPress) { onPress(true); }
 
-        const Id = setInterval(() => {
+        intervalRef.current = setInterval(() => {
             countdown -= 1;
-            setButtonTitle(`new sms (${countdown})`);
-            if (countdown <= 0) {
-                clearInterval(intervalId);
+            if (countdown > 0) {
+                setButtonTitle(`new sms (${countdown})`);
+            } else {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
                 setButtonEnable(true);
                 setButtonTitle('send sms');
             }
         }, 1000);
-        setIntervalId(Id);
-        return () => clearInterval(Id);
     };
 
     return (

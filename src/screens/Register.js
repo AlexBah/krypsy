@@ -19,11 +19,13 @@ const Register = ({ navigation }) => {
     };
 
     const handleSendSmsPress = (state) => {
+        console.log('handleSendSmsPress');
         setSmsInputEnable(state);
     };
 
     const handleSend = async () => {
-        let value
+        console.log('handleSend');
+        let value;
         value = GenerateRandomSms(maxSmsLength);
         setSmsCode(value);
         try {

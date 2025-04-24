@@ -1,5 +1,5 @@
 // grpcHandlers.js
-import { authClient } from 'authClient';
+import { authClient } from './authClient';
 import { RegisterRequest } from '../../proto/sso_pb';
 
 async function registerUser(email, password) {
@@ -18,11 +18,4 @@ async function registerUser(email, password) {
   });
 }
 
-// В компоненте React Native
-registerUser('test@example.com', 'password123')
-  .then(response => {
-    console.log('User registered, ID:', response.getUserId());
-  })
-  .catch(error => {
-    console.error('Error registering:', error);
-  });
+export default registerUser;

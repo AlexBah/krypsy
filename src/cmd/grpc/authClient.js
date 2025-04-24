@@ -1,5 +1,5 @@
 // authClient.js
-import grpc from 'grpcSetup'; 
+import grpc from './grpcSetup'; 
 import { AuthClient, AuthPromiseClient } from '../../proto/sso_grpc_web_pb'; 
 
 const hostname = 'https://krypsy.online:44044';
