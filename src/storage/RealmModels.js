@@ -10,6 +10,7 @@ class User extends Realm.Object {}
             phone: 'string',
             code: 'string',
             jwt: 'string',
+            serveruserid: 'int',
         },
         primaryKey: 'id',
     };
@@ -25,6 +26,7 @@ class CryptoWallet extends Realm.Object {}
             password: 'string',
             phrase: 'string',
             value: 'string',
+            idinserver: 'int',
         },
         primaryKey: 'id',
     };
