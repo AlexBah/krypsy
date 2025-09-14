@@ -34,7 +34,8 @@ class CryptoWallet extends Realm.Object {}
 const getRealm = async () => {
     const realm = await Realm.open({
         schema: [User, CryptoWallet],
-        schemaVersion: 2, 
+        schemaVersion: 3, 
+        deleteRealmIfMigrationNeeded: true // todo: replace by migration
     });
     return realm;
 };

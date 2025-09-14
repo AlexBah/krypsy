@@ -5,10 +5,10 @@ const SendSmsMtsExolve = async ( sms , phoneNumber ) => {
 
   const data = {
     number: configMTSExolve.number,
-    destination: phoneNumber,
+    destination: phoneNumber.replace(/[^0-9]/g, ''),
     text: 'krypsy code ' + sms,
   };
-
+  
   try {
 
     const responseMTS = await fetch( configMTSExolve.apiUrl, {

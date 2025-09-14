@@ -13,6 +13,7 @@ const Register = ({ navigation }) => {
     const [sms, setSms] = useState('');
     const [smsCode, setSmsCode] = useState('A A A');
     const maxSmsLength = 3;
+    const [hasError, setHasError] = useState(false);
 
     const handlePhoneChange = (number) => {
         setPhoneNumber(number);
@@ -44,8 +45,14 @@ const Register = ({ navigation }) => {
             if (sms === smsCode) {
                 navigation.navigate('NewLogin', { phoneNumber });
             } else {
-            // to do: wrong SMS
-            }
+                setSmsInputEnable(false);
+                setHasError(true);
+                
+                setTimeout(() => {
+                    setHasError(false);
+                    setSmsInputEnable(true);
+                }, 1000);
+             }
         };
     }, [sms]); 
 
@@ -65,6 +72,7 @@ const Register = ({ navigation }) => {
             <SmsInput 
                 enable={smsInputEnable}
                 onChange={handleSmsChange} 
+                style={hasError ? styles.errorSign : null}
             />
 
         </View>

@@ -5,6 +5,7 @@ const COLORS = {
     textColor: '#f0f0f0',
     opacity: 0.7,
     buttonColor: '#288BA2',
+    errorSign: '#8C0000',
 };
 
 const SIZES = {
@@ -127,6 +128,9 @@ const styles = StyleSheet.create({
   },
   gridButtonEmpty: {
     opacity: 0,
+  },
+  errorSign: {
+    color: COLORS.errorSign,
   },
 });
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
 import styles from '../styles/Styles';
 
-const SmsInput = ({ enable, onChange }) => {
+const SmsInput = ({ enable, onChange, style }) => {
     const [sms, setSms] = useState('');
 
     const formatSms = (number) => {
@@ -24,7 +24,7 @@ const SmsInput = ({ enable, onChange }) => {
         <View style={styles.inputBorder}>
             <TextInput
                 editable={enable} 
-                style={[styles.inputText, styles.smsInput]}
+                style={[styles.inputText, styles.smsInput, style]}
                 value={sms}
                 onChangeText={handleChange}
                 keyboardType="phone-pad"

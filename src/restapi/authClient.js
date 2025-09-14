@@ -2,7 +2,7 @@ import RestAPI from "../cmd/config/ConfigRestAPI";
 
 export class AuthClient {
 
-  static async register(phone: string, password: string): Promise<number> {
+  static async register(phone, password) {
     const response = await fetch(`${RestAPI.address}/v1/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -17,8 +17,7 @@ export class AuthClient {
     return data.user_id;
   }
 
-  static async login(phone: string, password: string,): 
-  Promise<{ name: string; email: string; token: string; userId: number }> {
+  static async login(phone, password) {
     const response = await fetch(`${RestAPI.address}/v1/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +37,7 @@ export class AuthClient {
     };
   }
 
-  static async isAdmin(userId: number): Promise<boolean> {
+  static async isAdmin(userId) {
     const response = await fetch(`${RestAPI.address}/v1/auth/admin/${userId}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -52,7 +51,7 @@ export class AuthClient {
     return data.is_admin;
   }
 
-  static async getUser(phone: string): Promise<string> {
+  static async getUser(phone) {
     const response = await fetch(`${RestAPI.address}/v1/users/${phone.replace(/[^0-9+]/g, '')}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -66,14 +65,7 @@ export class AuthClient {
     return data.name; 
   }
 
-  static async updateUser(
-    userId: number,
-    name: string,
-    email: string,
-    phone: string,
-    password: string,
-    token: string
-  ): Promise<boolean> {
+  static async updateUser(userId, name, email, phone, password, token) {
     const response = await fetch(`${RestAPI.address}/v1/users/${userId}`, {
       method: 'PUT',
       headers: { 
@@ -91,7 +83,7 @@ export class AuthClient {
     return data.success; 
   }
 
-  static async deleteUser(phone: string, token: string): Promise<boolean> {
+  static async deleteUser(phone, token) {
     const response = await fetch(`${RestAPI.address}/v1/users/${phone.replace(/[^0-9+]/g, '')}`, {
       method: 'DELETE',
       headers: { 
