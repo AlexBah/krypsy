@@ -1,4 +1,4 @@
-import configMTSExolve from "./config/ConfigMTSExolve";
+import configMTSExolve from "../config/ConfigMTSExolve";
 
 const SendSmsMtsExolve = async ( sms , phoneNumber ) => {
   console.log('SendSmsMtsExolve');

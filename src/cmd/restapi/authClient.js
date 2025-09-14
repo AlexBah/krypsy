@@ -1,4 +1,4 @@
-import RestAPI from "../cmd/config/ConfigRestAPI";
+import RestAPI from "../config/ConfigRestAPI";
 
 export class AuthClient {
 

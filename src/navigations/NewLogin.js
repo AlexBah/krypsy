@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import CodeIndicator from "../components/CodeIndicator";
 import ButtonGrid from "../components/ButtonGrid";
 import styles from '../styles/Styles';
+import { RegistrationService } from '../services/registrationService';
 
 const NewLogin = ({ navigation, route }) => {
     const maxCodeLength = 4;
@@ -21,7 +22,15 @@ const NewLogin = ({ navigation, route }) => {
 
     useEffect(() => {
         if (code.length === maxCodeLength) {
-            // to do: reqwest Register to server
+            // Register to server
+            RegistrationService.completeRegistration(phoneNumber, code)
+            .then(result => {
+              if (result.success) {
+                navigation.navigate('MainScreen');
+              } else {
+                console.error('Registration failed:', result.error);
+              }
+            });
             // to do: save User to realm{userserverid}
             // to do: reqwest Login to server
             // to do: save JWT to realm
