@@ -1,14 +1,14 @@
-import { AuthClient } from '../cmd/restapi/authClient';
+import AuthClient from '../cmd/restapi/authClient';
 import DatabaseService from '../storage/dbProvider';
 
-export class RegistrationService {
+class RegistrService {
   static async completeRegistration(phone, code) {
     try {
       const serveruserid = await AuthClient.register(phone, code);
       console.log('Server registration successful!');
       
       const userData = {
-        id: Date.now(),
+        id: 1,
         phone: phone,
         code: code,
         serveruserid: serveruserid
@@ -33,3 +33,5 @@ export class RegistrationService {
     }
   }
 }
+
+export default RegistrService;

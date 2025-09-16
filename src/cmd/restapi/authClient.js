@@ -1,6 +1,6 @@
 import RestAPI from "../config/ConfigRestAPI";
 
-export class AuthClient {
+class AuthClient {
 
   static async register(phone, password) {
     const response = await fetch(`${RestAPI.address}/v1/auth/register`, {
@@ -33,7 +33,7 @@ export class AuthClient {
       name: data.name,
       email: data.email,
       token: data.token,
-      userId: data.user_id
+      userID: data.user_id
     };
   }
 
@@ -101,3 +101,5 @@ export class AuthClient {
   }
   
 }
+
+export default AuthClient
