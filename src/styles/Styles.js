@@ -1,27 +1,28 @@
-import { StyleSheet } from 'react-native';
+// Styles.js
+import { StyleSheet } from "react-native";
 
 const COLORS = {
-    backgroundColor: '#333',
-    textColor: '#f0f0f0',
-    opacity: 0.7,
-    buttonColor: '#288BA2',
-    errorSign: '#8C0000',
+  backgroundColor: "#333",
+  textColor: "#f0f0f0",
+  opacity: 0.7,
+  buttonColor: "#288BA2",
+  errorSign: "#8C0000",
 };
 
 const SIZES = {
-    backgroundHeight: '100%',
+  backgroundHeight: "100%",
 };
 
 const styles = StyleSheet.create({
   background: {
     backgroundColor: COLORS.backgroundColor,
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   frontPicture: {
-    height: '50%',
-    width: '100%',
+    height: "50%",
+    width: "100%",
     resizeMode: "contain",
   },
   h1: {
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   },
   inputBorder: {
     flexDirection: "row",
-    justifyContent: 'center',
+    justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
     margin: 15,
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
   },
   inputText: {
     height: 40,
-    textAlignVertical: 'center', 
-    textAlign: 'center',    
+    textAlignVertical: "center",
+    textAlign: "center",
     paddingHorizontal: 10,
     fontSize: 20,
     fontFamily: "SemiBold",
@@ -103,28 +104,28 @@ const styles = StyleSheet.create({
   },
   circleContainer: {
     margin: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   gridContainer: {
     height: 200,
-    width: '100%',
-    alignItems: 'center',
-    alignContent: 'center',
+    width: "100%",
+    alignItems: "center",
+    alignContent: "center",
     margin: 10,
   },
   gridRow: {
-    flexDirection: 'row',
-    height: '25%',
+    flexDirection: "row",
+    height: "25%",
   },
   gridButton: {
     borderWidth: 1,
     borderRadius: 10,
-    width: '20%',
+    width: "20%",
     borderColor: COLORS.textColor,
     opacity: COLORS.opacity,
     margin: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   gridButtonEmpty: {
     opacity: 0,

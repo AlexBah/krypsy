@@ -1,4 +1,4 @@
-// Register.js
+// Entrance.js
 import React, { useState, useEffect } from "react";
 import { View, Text, Button } from "react-native";
 import PhoneInput from "../components/PhoneInput";
@@ -8,7 +8,7 @@ import GenerateRandomSms from "../cmd/GenerateRandomSms";
 import SendSmsMtsExolve from "../cmd/SendSmsMtsExolve";
 import styles from "../styles/Styles";
 
-const Register = ({ navigation }) => {
+const Entrance = ({ navigation }) => {
   const [smsInputEnable, setSmsInputEnable] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [sms, setSms] = useState("");
@@ -84,4 +84,4 @@ const Register = ({ navigation }) => {
   );
 };
 
-export default Register;
+export default Entrance;
