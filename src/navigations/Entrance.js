@@ -47,7 +47,8 @@ const Entrance = ({ navigation }) => {
   useEffect(() => {
     if (sms.length === maxSmsLength * 2 - 1) {
       if (sms === smsCode) {
-        navigation.navigate("NewLogin", { phoneNumber });
+        // todo: entranceService
+        navigation.navigate("Login");
       } else {
         setSmsInputEnable(false);
         setHasError(true);
@@ -77,8 +78,8 @@ const Entrance = ({ navigation }) => {
       />
 
       <RedirectButton
-        title = 'I have an account.\nLogin...'
-        screen = "Entrance"
+        title = 'I have not an account.\nRegistration...'
+        screen = "Register"
       />
     </View>
   );

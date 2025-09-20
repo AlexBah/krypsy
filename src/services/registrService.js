@@ -4,7 +4,7 @@ import DatabaseService from "../storage/dbProvider";
 
 class RegistrService {
   static async completeRegistration(phone, code) {
-    // todo: new app_id
+    // todo: new deviceID
     try {
       const serveruserid = await AuthClient.register(phone, code);
       console.log("Server registration successful!");

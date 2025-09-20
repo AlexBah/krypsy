@@ -45,7 +45,7 @@ const NewLogin = ({ navigation, route }) => {
       });
     }
   }, [code]);
-
+  
   return (
     <View style={styles.background}>
       <CodeIndicator codeLength={code.length} maxCodeLength={maxCodeLength} />

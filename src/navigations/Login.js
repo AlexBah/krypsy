@@ -25,7 +25,7 @@ const Login = ({ navigation }) => {
 
   useEffect(() => {
     if (code.length === maxCodeLength) {
-      // to do: проверка кода
+      // todo: loginService
       navigation.navigate("MainScreen");
     }
   }, [code]);

@@ -2,7 +2,7 @@ import React from 'react';
 import AppNavigator from './src/navigations/Navigator';
 import * as Font from 'expo-font';
 import {AppLoading} from 'expo';
-import { getRealm, User, CryptoWallet } from './src/storage/RealmModels';
+import { getRealm, User, CryptoWallet } from './src/storage/realmModels';
 
 export default class App extends React.Component {
     state = {
