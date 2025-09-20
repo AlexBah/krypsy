@@ -12,7 +12,6 @@ class RegistrService {
       const userData = {
         id: 1,
         phone: phone,
-        code: code,
         serveruserid: serveruserid,
       };
 
