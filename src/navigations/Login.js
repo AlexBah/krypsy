@@ -1,11 +1,13 @@
 // Login.js
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import styles from "../styles/Styles";
 import CodeIndicator from "../components/CodeIndicator";
 import ButtonGrid from "../components/ButtonGrid";
+import LoginService from "../services/loginService";
 
 const Login = ({ navigation }) => {
+  const op = "Login: "
   const maxCodeLength = 4;
   const [code, setCode] = useState("");
 
@@ -30,7 +32,7 @@ const Login = ({ navigation }) => {
         if (result.success) {
           navigation.navigate("MainScreen");
         } else {
-          console.error("Login failed:", result.error);
+          console.error(op + "Login failed:", result.error);
         }
       });
     }
@@ -39,6 +41,9 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.background}>
       <CodeIndicator codeLength={code.length} maxCodeLength={maxCodeLength} />
+
+      <Text style={styles.h2}>code</Text>
+ 
       <ButtonGrid onChange={handleCodeChange} />
     </View>
   );

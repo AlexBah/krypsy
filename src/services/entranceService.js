@@ -1,9 +1,10 @@
 // entranceService.js
-import AuthClient from "../cmd/restapi/authClient";
 import DatabaseService from "../storage/dbProvider";
 
 class EntranceService {
   static async completeEntrance(phone) {
+    const op = "EntranceService.completeEntrance: "
+
     // todo: new deviceID
     try {
       const userData = {
@@ -14,13 +15,13 @@ class EntranceService {
       const saved = await DatabaseService.addUser(userData);
 
       if (!saved) {
-        throw new Error("Failed to save user to local database");
+        throw new Error(op + "Failed to save user to local database");
       }
 
-      console.log("User saved to the phone");
+      console.log(op + "User saved to the phone");
       return { success: true, userData };
     } catch (error) {
-      console.error("Registration failed:", error.message);
+      console.error(op + "Registration failed:", error.message);
       return {
         success: false,
         error: error.message,

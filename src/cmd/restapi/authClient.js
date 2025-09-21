@@ -3,6 +3,8 @@ import RestAPI from "../config/ConfigRestAPI";
 
 class AuthClient {
   static async register(phone, password) {
+    const op = "AuthClient.register: "
+
     const response = await fetch(`${RestAPI.address}/v1/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -10,7 +12,7 @@ class AuthClient {
     });
 
     if (!response.ok) {
-      throw new Error(`Registration failed: ${response.statusText}`);
+      throw new Error(op + `Registration failed: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -18,14 +20,17 @@ class AuthClient {
   }
 
   static async login(phone, password) {
+    const op = "AuthClient.login: "
+    const clearPhone = phone.replace(/[^0-9+]/g, "");
+    
     const response = await fetch(`${RestAPI.address}/v1/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone, password, app_id: RestAPI.appID }),
+      body: JSON.stringify({ clearPhone, password, app_id: RestAPI.appID }),
     });
 
     if (!response.ok) {
-      throw new Error(`Login failed: ${response.statusText}`);
+      throw new Error(op + `Login failed in authClient: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -38,13 +43,15 @@ class AuthClient {
   }
 
   static async isAdmin(userId) {
+    const op = "AuthClient.isAdmin: "
+
     const response = await fetch(`${RestAPI.address}/v1/auth/admin/${userId}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
 
     if (!response.ok) {
-      throw new Error(`Admin check failed: ${response.statusText}`);
+      throw new Error(op + `Admin check failed: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -52,6 +59,8 @@ class AuthClient {
   }
 
   static async getUser(phone) {
+    const op = "AuthClient.getUser: "
+
     const response = await fetch(
       `${RestAPI.address}/v1/users/${phone.replace(/[^0-9+]/g, "")}`,
       {
@@ -61,7 +70,7 @@ class AuthClient {
     );
 
     if (!response.ok) {
-      throw new Error(`Get user failed: ${response.statusText}`);
+      throw new Error(op + `Get user failed: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -69,6 +78,8 @@ class AuthClient {
   }
 
   static async updateUser(userId, name, email, phone, password, token) {
+    const op = "AuthClient.updateUser: "
+
     const response = await fetch(`${RestAPI.address}/v1/users/${userId}`, {
       method: "PUT",
       headers: {
@@ -79,7 +90,7 @@ class AuthClient {
     });
 
     if (!response.ok) {
-      throw new Error(`Update failed: ${response.statusText}`);
+      throw new Error(op + `Update failed: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -87,6 +98,8 @@ class AuthClient {
   }
 
   static async deleteUser(phone, token) {
+    const op = "AuthClient.deleteUser: "
+
     const response = await fetch(
       `${RestAPI.address}/v1/users/${phone.replace(/[^0-9+]/g, "")}`,
       {
@@ -99,7 +112,7 @@ class AuthClient {
     );
 
     if (!response.ok) {
-      throw new Error(`Delete failed: ${response.statusText}`);
+      throw new Error(op + `Delete failed: ${response.statusText}`);
     }
 
     const data = await response.json();

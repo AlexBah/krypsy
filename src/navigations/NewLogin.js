@@ -49,7 +49,9 @@ const NewLogin = ({ navigation, route }) => {
   return (
     <View style={styles.background}>
       <CodeIndicator codeLength={code.length} maxCodeLength={maxCodeLength} />
+
       <Text style={styles.h2}>new code</Text>
+
       <ButtonGrid onChange={handleCodeChange} />
     </View>
   );

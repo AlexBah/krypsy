@@ -1,11 +1,12 @@
 // Register.js
 import React, { useState, useEffect } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text } from "react-native";
 import PhoneInput from "../components/PhoneInput";
 import SendSmsButton from "../components/SendSmsButton";
 import SmsInput from "../components/SmsInput";
-import GenerateRandomSms from "../cmd/GenerateRandomSms";
-import SendSmsMtsExolve from "../cmd/SendSmsMtsExolve";
+import RedirectButton from "../components/RedirectButton";
+import GenerateRandomSms from "../cmd/MTSExolve/GenerateRandomSms";
+import SendSmsMtsExolve from "../cmd/MTSExolve/SendSmsMtsExolve";
 import styles from "../styles/Styles";
 
 const Register = ({ navigation }) => {
@@ -62,6 +63,8 @@ const Register = ({ navigation }) => {
 
   return (
     <View style={styles.background}>
+      <Text style={styles.h2}>{'Registration\n'}</Text>
+
       <PhoneInput onChange={handlePhoneChange} />
 
       <SendSmsButton
@@ -76,8 +79,10 @@ const Register = ({ navigation }) => {
         style={hasError ? styles.errorSign : null}
       />
 
+      <Text style={styles.h2}>{'\n\n\n\nI have an account.'}</Text>
+
       <RedirectButton
-        title = 'I have an account.\nLogin...'
+        title = {' Login... '}
         screen = "Entrance"
       />
     </View>
