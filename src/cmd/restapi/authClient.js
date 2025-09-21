@@ -30,8 +30,10 @@ class AuthClient {
       body: JSON.stringify({ clearPhone, password, app_id: RestAPI.appID }),
     });
 
+    console.log('✅ Response:',response.ok, response.status, response.statusText);
+
     if (!response.ok) {
-      throw new Error(op + `Login failed in authClient: ${response.statusText}`);
+      throw new Error(op + `Login failed: ${response.statusText}`);
     }
 
     const data = await response.json();
