@@ -32,7 +32,7 @@ const NewLogin = ({ navigation, route }) => {
       RegistrService.completeRegistration(phoneNumber, code).then((result) => {
         if (result.success) {
           // Login to server
-          LoginService.completeLogin(phoneNumber, code).then((result) => {
+          LoginService.completeLogin(code).then((result) => {
             if (result.success) {
               navigation.navigate("MainScreen");
             } else {

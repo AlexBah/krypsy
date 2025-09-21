@@ -25,8 +25,14 @@ const Login = ({ navigation }) => {
 
   useEffect(() => {
     if (code.length === maxCodeLength) {
-      // todo: loginService
-      navigation.navigate("MainScreen");
+      // Login to server
+      LoginService.completeLogin(code).then((result) => {
+        if (result.success) {
+          navigation.navigate("MainScreen");
+        } else {
+          console.error("Login failed:", result.error);
+        }
+      });
     }
   }, [code]);
 

@@ -7,6 +7,7 @@ import SmsInput from "../components/SmsInput";
 import GenerateRandomSms from "../cmd/GenerateRandomSms";
 import SendSmsMtsExolve from "../cmd/SendSmsMtsExolve";
 import styles from "../styles/Styles";
+import EntranceService from "../services/entranceService";
 
 const Entrance = ({ navigation }) => {
   const [smsInputEnable, setSmsInputEnable] = useState(false);
@@ -47,8 +48,13 @@ const Entrance = ({ navigation }) => {
   useEffect(() => {
     if (sms.length === maxSmsLength * 2 - 1) {
       if (sms === smsCode) {
-        // todo: entranceService
-        navigation.navigate("Login");
+        EntranceService.completeEntrance(phoneNumber).then((result) => {
+          if (result.success) {
+            navigation.navigate("Login");
+          } else {
+            console.error("Entrance failed:", result.error);
+          }
+        });
       } else {
         setSmsInputEnable(false);
         setHasError(true);
