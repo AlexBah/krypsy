@@ -4,11 +4,12 @@ import RestAPI from "../config/ConfigRestAPI";
 class AuthClient {
   static async register(phone, password) {
     const op = "AuthClient.register: "
+    const clearPhone = phone.replace(/[^0-9+]/g, "");
 
     const response = await fetch(`${RestAPI.address}/v1/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone, password }),
+      body: JSON.stringify({ clearPhone, password }),
     });
 
     if (!response.ok) {
@@ -60,9 +61,10 @@ class AuthClient {
 
   static async getUser(phone) {
     const op = "AuthClient.getUser: "
+    const clearPhone = phone.replace(/[^0-9+]/g, "");
 
     const response = await fetch(
-      `${RestAPI.address}/v1/users/${phone.replace(/[^0-9+]/g, "")}`,
+      `${RestAPI.address}/v1/users/${clearPhone}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -79,6 +81,7 @@ class AuthClient {
 
   static async updateUser(userId, name, email, phone, password, token) {
     const op = "AuthClient.updateUser: "
+    const clearPhone = phone.replace(/[^0-9+]/g, "");
 
     const response = await fetch(`${RestAPI.address}/v1/users/${userId}`, {
       method: "PUT",
@@ -86,7 +89,7 @@ class AuthClient {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ name, email, phone, password }),
+      body: JSON.stringify({ name, email, clearPhone, password }),
     });
 
     if (!response.ok) {
@@ -99,9 +102,10 @@ class AuthClient {
 
   static async deleteUser(phone, token) {
     const op = "AuthClient.deleteUser: "
+    const clearPhone = phone.replace(/[^0-9+]/g, "");
 
     const response = await fetch(
-      `${RestAPI.address}/v1/users/${phone.replace(/[^0-9+]/g, "")}`,
+      `${RestAPI.address}/v1/users/${clearPhone}`,
       {
         method: "DELETE",
         headers: {
